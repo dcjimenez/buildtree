@@ -1,0 +1,32 @@
+.SUCCESS {
+	font-weight:bold;
+	color: green;
+}
+.FAILURE {
+	font-weight:bold;
+	color: red;
+}
+.NOT_BUILT {
+	font-weight:bold;
+	color: gray;
+}
+.UNSTABLE {
+	font-weight:bold;
+	color: orange;
+}
+.ABORTED {
+	font-weight:bold;
+	color: purple;
+}
+.duration {
+	font-weight:bold;
+}
+.NODE {
+    font-weight:bold;
+    color: blue;
+}
+.POSTBUILD {
+    font-weight:bold;
+    color: blue;
+    //color: #800020;
+}

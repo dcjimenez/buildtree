@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>1.580.1</version>
+    <relativePath/>
+  </parent>
+  
+  <groupId>es.elcorteingles.jenkins.plugins</groupId>
+  <artifactId>buildtree</artifactId>
+  <version>1.0.25.0-SNAPSHOT</version>
+  <packaging>hpi</packaging>
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>  
+  
+  <name>ECI - BuildTree Plugin</name>
+  <description>Vista en árbol de una ejecución por etapas en el workflow unificado de ECI.</description>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/BuildTree+Plugin</url>
+  <dependencies>
+ 	<!-- Utilidades comunes de plugins -->
+ 	<dependency>
+      <groupId>es.elcorteingles.jenkins.plugins</groupId>
+	  <artifactId>eci-commons</artifactId>
+	  <version>1.11.0-SNAPSHOT</version>
+ 	</dependency>
+  </dependencies>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <useIncrementalCompilation>false</useIncrementalCompilation>
+        </configuration>
+      </plugin>
+	  <plugin> 
+          <groupId>org.jenkins-ci.tools</groupId> 
+          <artifactId>maven-hpi-plugin</artifactId> 
+          <configuration> 
+            <disabledTestInjection>true</disabledTestInjection> 
+          </configuration> 
+      </plugin> 
+    </plugins>
+    
+	    <pluginManagement>
+	      <plugins>
+		      <!--This plugin's configuration is used to store Eclipse 
+		                m2e settings only. It has no influence on the Maven build itself. -->
+		      <plugin>
+		          <groupId>org.eclipse.m2e</groupId>
+		          <artifactId>lifecycle-mapping</artifactId>
+		          <configuration>
+		              <lifecycleMappingMetadata>
+		                  <pluginExecutions>
+		                      <pluginExecution>
+							    <pluginExecutionFilter>
+							      <groupId>org.jenkins-ci.tools</groupId>
+							      <artifactId>maven-hpi-plugin</artifactId>
+							      <versionRange>[1.106,)</versionRange>
+							      <goals>
+							        <goal>hpi</goal>
+							        <goal>resolve-test-dependencies</goal>
+							        <goal>default-resolve-test-dependencies</goal>
+							        <goal>test-compile</goal>
+							      </goals>
+							    </pluginExecutionFilter>
+							    <action>
+							      <ignore/>
+							    </action>
+							  </pluginExecution>
+		                  </pluginExecutions>
+		              </lifecycleMappingMetadata>
+		          </configuration>
+		      </plugin>
+	      </plugins>
+	    </pluginManagement>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>eci</id>
+      <url>http://nexus.elcorteingles.int/content/repositories/eci/</url>
+    </repository>
+    <snapshotRepository>
+      <id>eci-snapshots</id>
+      <url>http://nexus.elcorteingles.int/content/repositories/eci-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>

@@ -1,0 +1,32 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout" xmlns:t="/lib/hudson">
+	<l:layout norefresh="false">
+	    <st:include page="sidepanel.jelly" it="${it.build}"/>   
+	    <l:main-panel>
+	        <link rel="stylesheet" href="${app.rootUrl}/plugin/buildtree/scripts/themes/default/style.min.css" />
+	        <link rel="stylesheet" href="${app.rootUrl}/plugin/buildtree/styles/buildtree.css" />
+		    <script src="${app.rootUrl}/plugin/buildtree/scripts/libs/jquery.js"></script>
+			<script>jQuery.noConflict();</script>
+		    <h3>Build Tree</h3>
+	    	<hr/>
+		    <j:invoke on="${it}" var="renderedTree" method="renderTree" />
+	    	<j:invoke on="${it}" var="stillBuilding" method="isStillBuilding" />
+	    	<input type="hidden" id="temporalStore" value="${renderedTree}"></input>  
+	    	<input type="hidden" id="rootUrlStore" value="${app.rootUrl}"></input>
+	    	<div id="build_tree">	    	
+	        </div>
+	        <j:if test="${ stillBuilding == true }">
+	        <div><img src="${app.rootUrl}/images/16x16/clock_anime.gif"></img>Still building...</div>
+	        </j:if>
+	        <hr/>
+	        <j:invoke on="${it}" var="version" method="getVersion" />	     
+	        <div>BuildTree v${version}</div>
+	        <j:invoke on="${it}" var="parseTime" method="getLogParseTime" />
+		    <div>Tree built in ${parseTime} milliseconds.</div>
+		    <j:if test="${ renderedTree != null }">
+		    <script src="${app.rootUrl}/plugin/buildtree/scripts/buildtree.js"></script>
+		    </j:if>
+	    </l:main-panel>
+    </l:layout>
+
+</j:jelly>

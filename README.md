@@ -1,0 +1,1 @@
+Vista en árbol de una ejecución por etapas en el workflow unificado de ECI.
